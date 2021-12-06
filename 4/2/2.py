@@ -12,6 +12,7 @@ def boardValue(board, numbers):
         for n in line:
             if n not in numbers:
                 res += (int)(n)
+                print n
     return res
 
 
@@ -33,16 +34,21 @@ for line in lines[2:]:
         boards[boardCount].append(line.split())
         lineCount += 1
 
+boardWon = [False for i in range(len(boards))]
 win = False
+winning = 0
 res = 0
 
 for i in range(len(draw)):
     if win:
         break
-    for board in boards:
-        if checkBingo(board, draw[:i+1]):
-            res = int(draw[i]) * boardValue(board, draw[:i+1])
-            win = True
-            break
+    for j in range(len(boards)):
+        if not boardWon[j] and checkBingo(boards[j], draw[:i+1]):
+            boardWon[j] = True
+            winning += 1
+            if winning == len(boards):
+                res = int(draw[i]) * boardValue(boards[j], draw[:i+1])
+                win = True
+                break
 
 print res
