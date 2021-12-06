@@ -16,19 +16,4 @@ for i in range(256):
     counters[6] += temp
     counters[8] = temp
 
-print counters
 print functools.reduce(lambda a,b: a + b, counters)
-
-"""for i in range(256):
-    print i
-    append = 0
-    for i in range(len(vals)):
-        if vals[i] == 0:
-            vals[i] = 6
-            append += 1
-        else:
-            vals[i] -= 1
-    for i in range(append):
-        vals.append(8)
-
-print len(vals)"""
