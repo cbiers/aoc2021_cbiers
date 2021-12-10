@@ -19,7 +19,6 @@ for line in lines:
     if not corrupted:
         val = 0
         while len(stack) > 0:
-            print stack
             val *= 5
             el = stack.pop()
             if el == "(":
