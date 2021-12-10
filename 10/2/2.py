@@ -1,15 +1,13 @@
 f = open("in.txt", "r")
 lines = f.readlines()
 
-closing = [")", "]", "}", ">"]
-
 scores = []
 
 for line in lines:
     stack = []
     corrupted = False
     for c in line[:-1]:
-        if c not in closing:
+        if c not in [")", "]", "}", ">"]:
             stack.append(c)
         else:
             o = stack.pop()
