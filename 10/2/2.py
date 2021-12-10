@@ -1,7 +1,7 @@
 f = open("in.txt", "r")
 lines = f.readlines()
 
-closing = {")": 3, "]": 57, "}": 1197, ">": 25137}
+closing = [")", "]", "}", ">"]
 
 scores = []
 
@@ -9,7 +9,7 @@ for line in lines:
     stack = []
     corrupted = False
     for c in line[:-1]:
-        if c not in closing.keys():
+        if c not in closing:
             stack.append(c)
         else:
             o = stack.pop()
