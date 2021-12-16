@@ -48,11 +48,6 @@ def decodeSubPacketsNum(b, n):
         index += curr["length"]
     return res
 
-def getNextMultFour(n):
-    while n % 4 != 0:
-        n += 1
-    return n
-
 def totalLength(s):
     total = 0
     for p in s:
