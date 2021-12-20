@@ -46,13 +46,6 @@ def enhance(im, al, turn):
             new[i][j] = algorithm[binToDec(byte)]
     return new
 
-def prettyPrint(im):
-    for line in im:
-        s = ""
-        for c in line:
-            s += c
-        print s
-
 f = open("in.txt", "r")
 lines = f.readlines()
 
@@ -64,10 +57,7 @@ for line in lines[2:]:
 image = addOuter(addOuter(image))
 
 for i in range(2):
-    prettyPrint(image)
-    print countLit(image)
     image = enhance(image, algorithm, i)
     image = addOuter(image)
 
-prettyPrint(image)
 print countLit(image)
