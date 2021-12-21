@@ -11,12 +11,11 @@ outcomes =  [
                 {"roll": 8, "prob": 3},
                 {"roll": 9, "prob": 1}
             ]
-wins = [0, 0]
+wins = 0
 
 currentPlayer = 1
 
 while scores:
-    print len(scores)
     newScores = []
     for s in scores:
         if s["score1"] < 21 and s["score2"] < 21:
@@ -36,9 +35,7 @@ while scores:
                 newScores.append(newScore)
         else:
             if s["score1"] >= 21:
-                wins[0] += s["occurences"]
-            else:
-                wins[1] += s["occurences"]
+                wins += s["occurences"]
     if currentPlayer == 1:
         currentPlayer = 2
     else:
