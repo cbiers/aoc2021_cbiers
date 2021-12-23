@@ -1,5 +1,5 @@
-def split(c, e):
-
+def split(e, c):
+    
 
 def overlap(e1, e2):
     xOver = e1["xMin"] <= e2["xMin"] and e2["xMin"] <= e1["xMax"] or e2["xMin"] <= e1["xMin"] and e1["xMin"] <= e2["xMax"]
@@ -8,15 +8,18 @@ def overlap(e1, e2):
     return xOver and yOver and zOver
 
 def addToWorld(w, c):
-    toSplit = []
-    overlap = False
+    toRemove = []
+    toAdd = []
     for e in w:
         if overlap(e, c):
-            for nc in split(c, e):
-                addToWorld(w, nc)
-            overlap = True
-    if not overlap:
-        w.append(c)
+            toRemove.append(e)
+            toAdd.append(split(e, c))
+    w.append(c)
+    for r in toRemove:
+        w.remove(r)
+    for a in toAdd:
+        for c in a:
+            w.append(a)
 
 def countCubes(w):
     count = 0
@@ -53,10 +56,9 @@ world = []
 
 for i in range(len(cubes)):
     cube = cubes[i]
-    if cube["xMin"] >= -50 and cube["xMax"] <= 50 and cube["yMin"] >= -50 and cube["yMax"] <= 50 and cube["zMin"] >= -50 and cube["zMax"] <= 50:
-        if instructions[i]:
-            addToWorld(world, cube)
-        else:
-            removeFromWorld(world, cube)
+    if instructions[i]:
+        addToWorld(world, cube)
+    else:
+        removeFromWorld(world, cube)
 
 print countCubes(world)
